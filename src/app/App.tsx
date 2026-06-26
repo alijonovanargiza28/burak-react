@@ -1,6 +1,4 @@
 import React from "react";
-import "../css/app.css";
-
 import { Container, Stack, Box, Typography, Button } from "@mui/material";
 import { Link, Route, Switch, useLocation } from "react-router-dom";
 import { AboutPage } from "./screens/aboutPage";
@@ -11,6 +9,8 @@ import { HomePage } from "./screens/homePage";
 import { OtherNavbar } from "./components/headers/OtherNavbar";
 import { HomeNavbar } from "./components/headers/HomeNavbar/homeNavbar";
 import { Footer } from "./components/footer";
+import "../css/app.css";
+import "../css/navbar.css"
 
 function App() {
   const location = useLocation()

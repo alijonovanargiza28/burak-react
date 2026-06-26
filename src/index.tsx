@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import App from "./app/App";
@@ -10,11 +10,7 @@ import theme from "./app/material/MaterialTheme";
 import "./css/index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement,
-);
-
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
@@ -25,6 +21,7 @@ root.render(
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,
+  document.getElementById("root"),
 );
 
 reportWebVitals();
