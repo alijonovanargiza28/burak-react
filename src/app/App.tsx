@@ -2,45 +2,44 @@ import React from "react";
 import "../css/app.css";
 
 import { Container, Stack, Box, Typography, Button } from "@mui/material";
-import { Link, Route, Switch } from "react-router-dom";
-import { About } from "./screens/About";
-import { Users } from "./screens/Users";
+import { Link, Route, Switch, useLocation } from "react-router-dom";
+import { AboutPage } from "./screens/aboutPage";
+import { UsersPage } from "./screens/usersPage";
+import { OrdersPage } from "./screens/ordersPage";
+import { ProductsPage } from "./screens/productPage";
+import { HomePage } from "./screens/homePage";
+import { OtherNavbar } from "./components/headers/OtherNavbar";
+import { HomeNavbar } from "./components/headers/HomeNavbar/homeNavbar";
+import { Footer } from "./components/footer";
 
 function App() {
-  return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/users">Users</Link>
-          </li>
-        </ul>
-      </nav>
+  const location = useLocation()
 
-      {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+  return (
+    <>
+    {location.pathname === "/" ? <HomeNavbar/> : <OtherNavbar/>}
       <Switch>
         <Route path="/about">
-          <About />
+          <AboutPage />
         </Route>
-        <Route path="/users">
-          <Users />
+        <Route path="/member-page">
+          <UsersPage />
+        </Route>
+        <Route path="/orders">
+          <OrdersPage />
+        </Route>
+        <Route path="/produts">
+          <ProductsPage />
         </Route>
         <Route path="/">
-          <Home />
+          <HomePage />
         </Route>
       </Switch>
-    </div>
+      <Footer/>
+    </>
+
   );
 }
-function Home() {
-  return <Container>Home</Container>;
-}
+
 
 export default App;
