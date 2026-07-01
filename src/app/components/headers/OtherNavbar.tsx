@@ -1,48 +1,50 @@
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import Basket from "../Basket";
+import Basket from "./Basket";
 
 export default function OtherNavbar() {
-  const authmember = null;
+  const authMember = null;
+
   return (
     <div className="other-navbar">
       <Container className="navbar-container">
         <Stack className="menu">
           <Box>
             <NavLink to="/">
-              <img className="brand-logo" src="/icons/burak.svg" />
+              <img className="brand-logo" src="/icons/bumarak.svg" />
             </NavLink>
           </Box>
           <Stack className="links">
             <Box className={"hover-line"}>
-              <NavLink to="/">HOME</NavLink>
+              <NavLink to="/">Home</NavLink>
             </Box>
             <Box className={"hover-line"}>
-              <NavLink to="/products" activeClassName="underline">
-                PRODUCTS
+              <NavLink to="/products" activeClassName={"underline"}>
+                Products
               </NavLink>
             </Box>
-            {authmember ? (
+            {authMember ? (
               <Box className={"hover-line"}>
-                <NavLink to="/orders" activeClassName="underline">
-                  ORDERS
+                <NavLink to="/orders" activeClassName={"underline"}>
+                  Orders
                 </NavLink>
               </Box>
             ) : null}
-            {authmember ? (
+            {authMember ? (
               <Box className={"hover-line"}>
-                <NavLink to="/member-page" activeClassName="underline">
+                <NavLink to="/member-page" activeClassName={"underline"}>
                   My Page
                 </NavLink>
               </Box>
             ) : null}
             <Box className={"hover-line"}>
-              <NavLink to="/help" activeClassName="underline">
-                HELP
+              <NavLink to="/help" activeClassName={"underline"}>
+                Help
               </NavLink>
             </Box>
-               <Basket/>
-            {!authmember ? (
+            <Basket />
+
+            {!authMember ? (
               <Box>
                 <Button variant="contained" className="login-button">
                   Login
@@ -51,7 +53,7 @@ export default function OtherNavbar() {
             ) : (
               <img
                 className="user-avatar"
-                src={"icons/default-user.svg"}
+                src={"/icons/default-user.svg"}
                 aria-haspopup={"true"}
               />
             )}
