@@ -561,7 +561,7 @@
 .products-page .product-category .category-main {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   transform: rotate(-90deg); /* Standard CSS property */
   -moz-transform: rotate(-90deg); /* Firefox */
   -ms-transform: rotate(-90deg); /* Edge */
