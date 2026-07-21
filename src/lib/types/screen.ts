@@ -6,8 +6,6 @@ export interface AppRootState{
     homepage:HomePageState;
     
 }
-
-
 // HOMEPAGE
 export interface HomePageState{
     popularDishes:Product[];

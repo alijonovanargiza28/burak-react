@@ -22,6 +22,8 @@ const PopularDishesRetriever = createSelector(
   (popularDishes)=>({popularDishes})
 )
 
+console.log(process.env.REACT_APP_API_URL)
+
 export default function HomePage() {
   return (
     <div className={"homepage"}>
