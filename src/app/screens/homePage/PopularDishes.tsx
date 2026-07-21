@@ -10,22 +10,19 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 
 
-import { useDispatch, useSelector } from "react-redux";
-import { Dispatch } from "@reduxjs/toolkit";
+import {  useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { setPopularDishes } from "./slice";
 import { retrivePopularDishes } from "./selector";
 import { Product } from "../../../lib/types/product";
-import ProductService from "../../services/ProductService";
 import { serverApi } from "../../../lib/config";
 
-const PopularDishesRetriever = createSelector(
+const popularDishesRetriever = createSelector(
   retrivePopularDishes,
   (popularDishes) => ({ popularDishes }),
 );
 
 export default function PopularDishes() {
-  const {popularDishes} = useSelector(PopularDishesRetriever);
+  const {popularDishes} = useSelector(popularDishesRetriever);
   return (
     <div className="popular-dishes-frame">
       <Container>
@@ -33,6 +30,7 @@ export default function PopularDishes() {
           <Box className="category-title">Popular Dishes</Box>
           <Stack className="cards-frame">
             {popularDishes.length !== 0 ? (
+              
               popularDishes.map((ele:Product) => {
                 const imagePath = `${serverApi}/${ele.productImages[0]}`;
                 return (
@@ -40,6 +38,7 @@ export default function PopularDishes() {
                     <Card className={"card"}>
                       <CardCover>
                         <img src={imagePath} alt="" />
+
                       </CardCover>
                       <CardCover className={"card-cover"} />
                       <CardContent sx={{ justifyContent: "flex-end" }}>

@@ -21,12 +21,13 @@ import { Member } from "../../../lib/types/member";
 const actionDispatch = (dispatch: Dispatch) => ({
   setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)),
   setNewDishes:(data:Product[])=>dispatch(setNewDishes(data)),
-  setTopUsers:(data:Member)=>dispatch(setTopUsers(data))
+  setTopUsers:(data:Member[])=>dispatch(setTopUsers(data))
 });
 
 
 export default function HomePage() {
-  const { setPopularDishes, setNewDishes } = actionDispatch(useDispatch());
+  const { setPopularDishes, setNewDishes, setTopUsers } =
+    actionDispatch(useDispatch());
 
 useEffect(() => {
   const product = new ProductService();
@@ -59,8 +60,8 @@ useEffect(() => {
     const member = new MemberService();
     member
     .getTopUsers()
-    .then(data =>{
-    setTopUsers
+    .then((data) =>{
+    setTopUsers(data)
     }).catch((err)=> console.log(err))
 }, []);
 
