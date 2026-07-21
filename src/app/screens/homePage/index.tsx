@@ -8,17 +8,20 @@ import Events from "./Events";
 import { useDispatch} from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import { setNewDishes, setPopularDishes } from "./slice";
+import { setNewDishes, setPopularDishes, setTopUsers } from "./slice";
 import { retrivePopularDishes } from "./selector";
 import { Product } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
 import "../../../css/home.css";
+import MemberService from "../../services/MemberService";
+import { Member } from "../../../lib/types/member";
 
 // REDCE SLICE & SELECTOR
 const actionDispatch = (dispatch: Dispatch) => ({
   setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)),
   setNewDishes:(data:Product[])=>dispatch(setNewDishes(data)),
+  setTopUsers:(data:Member)=>dispatch(setTopUsers(data))
 });
 
 
@@ -52,6 +55,13 @@ useEffect(() => {
      setNewDishes(data);
     })
     .catch((err) => console.log(err));
+
+    const member = new MemberService();
+    member
+    .getTopUsers()
+    .then(data =>{
+    setTopUsers
+    }).catch((err)=> console.log(err))
 }, []);
 
 
