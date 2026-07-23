@@ -12,13 +12,13 @@ const productsPageSlice = createSlice({
   initialState,
   reducers: {
     setRestaurant: (state, action) => {
-      state.restaurant = action.payload;
+      state.restaurant = action.payload.result
     },
     setChosenProduct: (state, action) => {
-      state.chosenProduct = action.payload;
+      state.chosenProduct = action.payload.result
     },
     setProducts: (state, action) => {
-      state.products = action.payload;
+      state.products = action.payload.result
     },
   },
 });
