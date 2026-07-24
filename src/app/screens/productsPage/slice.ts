@@ -15,7 +15,7 @@ const productsPageSlice = createSlice({
       state.restaurant = action.payload.result
     },
     setChosenProduct: (state, action) => {
-      state.chosenProduct = action.payload.result
+      state.chosenProduct = action.payload
     },
     setProducts: (state, action) => {
       state.products = action.payload.result

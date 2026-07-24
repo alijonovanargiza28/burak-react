@@ -50,9 +50,11 @@ export default function Products() {
   }, [productSearch]);
 
   useEffect(() => {
+    
     if (searchText === "") {
       productSearch.search = "";
       setProductSearch({ ...productSearch });
+      
     }
   }, [searchText]);
 
