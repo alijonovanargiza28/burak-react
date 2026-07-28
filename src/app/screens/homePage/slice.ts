@@ -16,7 +16,7 @@ const homePageSlice = createSlice({
     },
 
     setNewDishes: (state, action) => {
-      state.newDishes = action.payload.result
+      state.newDishes = action.payload
     },
 
     setTopUsers: (state, action) => {

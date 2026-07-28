@@ -1,8 +1,6 @@
 import axios from "axios"
 import { serverApi } from "../../lib/config";
-import { Product, ProductInquery } from "../../lib/types/product";
 import { LoginInput, Member, MemberInput } from "../../lib/types/member";
-import { sign } from "crypto";
 
 class MemberService {
   private readonly path: string;
@@ -14,7 +12,7 @@ class MemberService {
     try {
       const url = this.path + "/member/top-users";
       const result = await axios.get(url);
-      console.log("getTopUsers", result.data);
+      console.log("getTopUsers", result);
 
       return result.data;
     } catch (err) {
