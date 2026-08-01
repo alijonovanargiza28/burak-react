@@ -1,4 +1,4 @@
-import { useState, SyntheticEvent } from "react";
+import { useState, SyntheticEvent, useEffect } from "react";
 import { Container, Stack, Box } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -7,12 +7,15 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PausedOrders from "./PausedOrders";
 import ProcessOrders from "./ProcessOrders";
 import FinishedOrders from "./FinishedOrders";
-import "../../../css/order.css";
 import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { setPausedOrders, setProcessOrders, setFinishedOrders } from "./slice";
-import { Order } from "../../../lib/types/order";
+import { Order, OrderInquiry } from "../../../lib/types/order";
 import { useDispatch } from "react-redux";
+import { OrderStatus } from "../../../lib/enums/order.enum";
+import OrderService from "../../services/OrderService";
+import { useGlobal } from "../../hooks/useGlobals";
+import "../../../css/order.css";
 
 
 // REDCE SLICE & SELECTOR
@@ -23,12 +26,38 @@ const actionDispatch = (dispatch: Dispatch) => ({
 });
 
 
-
-
 export default function OrdersPage() {
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
-    actionDispatch(useDispatch);
+    actionDispatch(useDispatch());
+    const {orderBuilder} = useGlobal()
   const [value, setValue] = useState("1");
+const [orderInquiry, setOrderInquiry]=useState<OrderInquiry>({
+  page:1,
+  limit:5,
+  orderStatus:OrderStatus.PAUSE
+});
+  useEffect(()=>{
+const order = new OrderService();
+
+order
+.getMyOrders({...orderInquiry, orderStatus:OrderStatus.PAUSE})
+.then((data)=>setPausedOrders(data))
+.catch((err)=>console.log(err))
+
+order
+  .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PROCESS })
+  .then((data) => setProcessOrders(data))
+  .catch((err) => console.log(err));
+
+
+  order
+    .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
+    .then((data) => setFinishedOrders(data))
+    .catch((err) => console.log(err));
+
+
+
+  },[orderInquiry, orderBuilder])
 
   // HANDLERS
 
@@ -56,8 +85,8 @@ export default function OrdersPage() {
               </Box>
             </Box>
             <Stack className={"order-main-content"}>
-              <PausedOrders />
-              <ProcessOrders />
+              <PausedOrders setValue={setValue} />
+              <ProcessOrders setValue={setValue} />
               <FinishedOrders />
             </Stack>
           </TabContext>

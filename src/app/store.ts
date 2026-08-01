@@ -11,7 +11,7 @@ export const store = configureStore({
   reducer: {
     homePage:HomePageReducer,
     productsPage:ProductPageReducer,
-    ordersPage:OrdersPageReducer
+    ordersPage:OrdersPageReducer,
   },
 });
 

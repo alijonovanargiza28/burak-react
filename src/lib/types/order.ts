@@ -3,7 +3,6 @@ import { OrderStatus } from "../enums/order.enum";
 import { Product } from "./product";
 
 export interface OrderItemInput {
-  map(arg0: (item: OrderItemInput) => void): unknown;
   itemQuantity: number;
   itemPrice: number;
   productId: string;
@@ -22,6 +21,7 @@ export interface OrderItem {
 
 export interface Order {
   _id: string;
+
   orderTotal: number;
   orderDelivery: number;
   orderStatus: OrderStatus;
@@ -31,6 +31,7 @@ export interface Order {
   //    from aggragation
   orderItems: OrderItem[];
   orderData?: Product[];
+  productData?: Product[];
 }
 
 
