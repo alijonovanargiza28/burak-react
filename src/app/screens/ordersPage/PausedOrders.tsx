@@ -85,9 +85,9 @@ export default function PausedOrders(props: PausedOrdersProps) {
               <Box className={"order-box-scroll"}>
                 {order?.orderItems?.map((item: OrderItem) => { 
                 
-                  const product: Product = order.productData.filter(
+                  const product: Product = order?.productData?.filter(
                     (ele: Product) => item.productId === ele._id,
-                  )[0];
+                  )[0]!;
 
                   if (!product) return null;
 
